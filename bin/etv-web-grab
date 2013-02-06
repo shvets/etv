@@ -7,10 +7,10 @@ $:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
 
 $KCODE='u' if RUBY_VERSION < "1.9"
 
-require 'etv/web/app'
+require 'etv/web_grab/app'
 
 require 'vegas'
 
 trap('INT') { puts "Program was interrupted..."; exit }
 
-Vegas::Runner.new(Web::App, 'etv-web')
+Vegas::Runner.new(WebGrab::App, 'etv-grab')

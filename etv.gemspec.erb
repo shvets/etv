@@ -1,0 +1,18 @@
+# -*- encoding: utf-8 -*-
+
+require File.expand_path(File.dirname(__FILE__) + '/lib/etv/version')
+
+Gem::Specification.new do |spec|
+  spec.name        = "etv"
+  spec.summary     = %q{Set of command-line and web tools to work with etvnet service in order to get mms url}
+  spec.description = %q{Set of command-line and web tools to work with etvnet service in order to get mms url}
+  spec.email       = "alexander.shvets@gmail.com"
+  spec.authors     = ["Alexander Shvets"]
+  spec.homepage    = "http://github.com/shvets/etv"
+
+  spec.files         = `git ls-files`.split($\)
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+  spec.executables   = ["convert", "etv", "etv-web", "grab", "info"]
+  spec.version       = Etv::VERSION
+end
