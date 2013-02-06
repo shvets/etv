@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# -*- encoding: utf-8 -*- 
+
+require 'rubygems' unless Object.const_defined?(:Gem)
+
+$:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
+
+trap(:INT) { puts "Program was interrupted..."; exit }
+
+require 'converter'
+
+if ARGV.size < 2
+  puts "Usage: convert <input_file> <output_file>"
+else
+  input_file = ARGV[0]
+  output_file = ARGV[1]
+
+  converter = Converter.new
+
+  converter.convert input_file, output_file
+end
+

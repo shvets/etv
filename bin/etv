@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'rubygems' unless Object.const_defined?(:Gem)
+
+$:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
+
+require 'etv/main'
+
+trap('INT') { puts "Program was interrupted..."; exit }
+
+client = Main.new
+
+link_info = nil
+
+begin
+  link_info = client.process ARGV.join(' ')
+rescue Exception => e
+  puts e.message
+end
+
+if not link_info.nil? and link_info.resolved?
+  puts "Link #{link_info.text} [(#{link_info.media_file})]: #{link_info.link}"
+  #puts "#{link_info.rtsp_link}"
+
+  launch = ask("Launch link (y/n)?")
+
+  client.launch_link link_info.link if launch =~ /y/i
+end
+

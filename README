@@ -1,0 +1,44 @@
+This application is hosted at Heroku Garden: http://etvnet.heroku.com
+
+= Etv -- Set of command-line and web tools to work with etvnet service in order to get mms url.
+
+= Installation
+
+== Installing the Gem
+    $ gem i etv
+
+== Usage
+
+- to start command line tool:
+
+> etv
+
+Usage: etv [options] keywords
+    -s, --search                     Display Search Menu
+    -t, --translit                   Enter russian keywords in translit
+    -b, --best-hunred                Display Best 100 Menu
+    -n, --new_items                  Display New Items Menu
+    -p, --premier                    Display Premier of the Week Menu
+    -c, --channels                   Display Channels Menu
+    -a, --catalog                    Display Catalog Menu
+    -m, --main                       Display Main Menu
+    -h, --help                       Display this screen
+
+- to start sinatra application:
+
+> etv-web
+
+- to convert from one format to another:
+
+> convert <input_file> <output_file>
+
+- to grab the file:
+
+> grab <url>
+
+- to get info about the media file:
+
+> info <file_name
+>
+
+

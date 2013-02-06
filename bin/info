@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'rubygems' unless Object.const_defined?(:Gem)
+
+$:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
+
+trap(:INT) { puts "Program was interrupted..."; exit }
+
+require "media_utils"
+
+if ARGV.size < 1
+  puts "Usage: info <file_name>"
+else
+  file_name = ARGV[0]
+
+  puts "Movie: #{file_name}."
+
+  params = MediaUtils.info file_name
+
+  puts params
+end

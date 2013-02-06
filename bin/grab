@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'rubygems' unless Object.const_defined?(:Gem)
+
+$:.unshift(File::join(File::dirname(File::dirname(__FILE__)), "lib"))
+
+trap(:INT) { puts "Program was interrupted..."; exit }
+
+require "etv/basic_main"
+require "progress_view"
+require "media_utils"
+
+#ARGV[0] = "151262"
+#ARGV[0] = "http://etvnet.com/tv/multfilmyi-filmyi-i-peredachi-dlya-detej-online/sluchaj-v-detskom-sadu/151262/"
+
+if ARGV.size < 1
+  puts "Usage: grab <url>"
+else
+  url = ARGV[0]
+
+  cli = BasicMain.new
+
+  link_info = cli.request_link url
+
+  link = link_info.link
+  name = link_info.media_item.text
+  name =  link_info.media_item.underscore_name if name.nil? or name.strip.size == 0
+
+  p "name: #{name}"
+
+  puts link
+
+  progress_view = ProgressView.new
+
+  progress_view.display MediaUtils.mplayer(link, "#{name}.wma")
+end
+
+#command = "mplayer -dumpstream #{url} -dumpfile \"#{file_name}\" -nocache -msgcolor"
+#command = "mplayer -dumpstream #{url} -dumpaudio -dumpfile \"#{file_name}\" -nocache -msgcolor"
+#execute "mencoder #{url} -oac copy -ovc copy -nocache -o \"#{file_name}\""
+#execute "ffmpeg -i #{url} -acodec copy -vcodec copy \"#{file_name}\""

@@ -1,0 +1,4 @@
+.idea
+*.gem
+pkg
+.sass-cache
