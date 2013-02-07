@@ -13,4 +13,4 @@ require 'vegas'
 
 trap('INT') { puts "Program was interrupted..."; exit }
 
-Vegas::Runner.new(WebGrab::App, 'etv-grab')
+Vegas::Runner.new(WebGrab::App, 'etv-web-grab')

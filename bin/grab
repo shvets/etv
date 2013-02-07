@@ -17,17 +17,15 @@ require "media_utils"
 if ARGV.size < 1
   puts "Usage: grab <url>"
 else
-  url = ARGV[0]
+  query = ARGV[0]
 
   cli = BasicMain.new
 
-  link_info = cli.request_link url
+  link_info = cli.request_link query
 
   link = link_info.link
   name = link_info.media_item.text
   name =  link_info.media_item.underscore_name if name.nil? or name.strip.size == 0
-
-  p "name: #{name}"
 
   puts link
 

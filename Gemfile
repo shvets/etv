@@ -17,6 +17,7 @@ gem "json_pure"
 gem "ruby-progressbar"
 
 gem "sinatra"
+gem "sinatra-partial"
 gem "haml"
 gem "sass"
 gem "rack"

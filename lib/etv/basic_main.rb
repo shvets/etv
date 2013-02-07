@@ -44,25 +44,25 @@ class BasicMain
     [username, password]
   end
 
-  def build_media_item query
-    media_id = @access_page.locate_media_id query
+  def build_media_item query, media_id
+    url = (query == media_id) ? "http://etvnet.com/tv/watch/#{media_id}/" : query
 
-    url =  "http://etvnet.com/tv/watch/#{media_id}/"
-
-    page = Page.new(query)
+    page = Page.new(url)
     page.load_page
 
-    text = page.document.css(".conteiner .info-movie-title table tr td h1").text.strip
+    text = page.document.css(".info-movie-title h1").text.strip
 
     name = text ? text : query
 
-    MediaItem.new name, url
+    MediaItem.new(name, media_id)
   end
 
   def request_link query
     cookie = @login_page.get_cookie
 
-    @access_page.request_link_info build_media_item(query), cookie.value
+    media_id = @access_page.locate_media_id query
+
+    @access_page.request_link_info build_media_item(query, media_id), cookie.value
   end
 
 end

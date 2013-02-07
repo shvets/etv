@@ -1,22 +1,25 @@
 require 'rubygems' unless RUBY_VERSION =~ /1.9.*/
 
 require 'sinatra/base'
+require 'sinatra/partial'
 require 'haml'
 require 'sass'
-
-require 'etv/web/partial'
 
 require 'etv/engine/items_page_factory'
 require 'etv/engine/page/login_page'
 
 module Web
   class App < Sinatra::Base
+    register Sinatra::Partial
+
     COOKIE_FILE_NAME = ENV['HOME'] + "/.etv"
 
     set :haml, {:format => :html5, :attr_wrapper => '"'}
     set :views, File.dirname(__FILE__) + '/app/views'
     set :public_folder, File.dirname(__FILE__) + '/app/public'
     set :sessions, true
+    enable :partial_underscores
+    #set :partial_template_engine, :erb
 
     def initialize app=nil
       super
@@ -181,7 +184,6 @@ module Web
     end
 
     helpers do
-      include Partial
       include Rack::Utils
 
       alias_method :h, :escape_html

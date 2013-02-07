@@ -1,5 +1,9 @@
 %form{ :action => '/grab/', :method => "get" }
   -#%input{ :type => 'hidden', :name => 'order_direction', :value => '-' }
+
+  %label{:style => "color:black"}
+    ="Enter url:"
+
   %input#q{ :name => 'q' }
 
   %button{:type => "submit"}="Search"
